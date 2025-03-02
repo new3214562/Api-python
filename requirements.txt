@@ -1,4 +1,6 @@
 flask
 flask-cors
+yt-dlp
+google-api-python-client
 gunicorn
 uvicorn
