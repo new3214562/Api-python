@@ -31,16 +31,19 @@ def search_song(query):
 
 # ดาวน์โหลดวิดีโอ/เพลงจาก YouTube
 def download_video(video_url, file_format):
+    # ตรวจสอบว่ามีโฟลเดอร์ OUTPUT_FOLDER หรือยัง ถ้ายังไม่มีให้สร้าง
     if not os.path.exists(OUTPUT_FOLDER):
         os.makedirs(OUTPUT_FOLDER)
 
+    # ตั้งค่า yt-dlp
     ydl_opts = {
-        "format": "bestaudio/best" if file_format == "mp3" else "bestvideo+bestaudio",
+        "format": "bestaudio/best",
         "outtmpl": f"{OUTPUT_FOLDER}/%(title)s.%(ext)s",
-        "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3"}] if file_format == "mp3" else [],
+        "cookiefile": "cookies.txt",  # ใช้คุกกี้ในการดาวน์โหลด
         "quiet": False,
     }
 
+    # เริ่มดาวน์โหลดวิดีโอ
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info_dict = ydl.extract_info(video_url, download=True)
         filename = ydl.prepare_filename(info_dict)
