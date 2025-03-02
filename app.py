@@ -227,4 +227,4 @@ async def on_ready():
     print(f"Bot {bot.user} พร้อมใช้งาน!")
     await bot.change_presence(activity=nextcord.Game("ขายยศ"))
 
-bot.run("MTEzMDUyMTUwNjgxMjgwNTE5MA.GlwWBx.eDPahVoXKDvEqjwTkx4U-KvlKnrcC-_Hdkd6M0")
+bot.run("MTEzMDUyMTUwNjgxMjgwNTE5MA.GCLvuh.t27FPpuT3C2PBQl5HyQKioIcX9bLEIrpu6N2w4")
