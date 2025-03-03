@@ -4,7 +4,22 @@ import os
 import requests
 from nextcord.ext import commands
 from nextcord.ui import Button, View, Modal, TextInput
+from flask import Flask
+import threading
 
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "I'm alive!"
+
+def run():
+    app.run(host="0.0.0.0", port=8080)
+
+def keep_alive():
+    thread = threading.Thread(target=run, daemon=True)
+    thread.start()
+    
 # ตั้งค่า Bot และ Intents
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -217,6 +232,7 @@ async def on_ready():
         print("❌ ไม่พบช่องแจ้งเตือน")
 
     print(f"บอทล็อกอินเป็น: {bot.user}")
+    keep_alive()
     await bot.change_presence(activity=nextcord.Game(name="ขาย Role"))
 
 @bot.command()
