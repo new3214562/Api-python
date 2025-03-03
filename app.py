@@ -236,4 +236,4 @@ async def main(ctx: commands.Context):
 
     await ctx.send(embed=embed, view=view)
 
-bot.run(TOKEK)
+bot.run(TOKEN)
